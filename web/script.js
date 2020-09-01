@@ -13,10 +13,9 @@ function initChart() {
 		// Configuration options go here
 		options: {
 			scales: {
-				xAxes: [{
-					type: "time",
-					ticks: {}
-				}]
+				x: {
+					type: "time"
+				}
 			},
 			tooltips: {
 				mode: "x",
@@ -107,12 +106,12 @@ async function refHandler(event) {
 function intervalHandler() {
 	let interval = event.target.value;
 	if (interval === "infinity") {
-		delete chart.options.scales.xAxes[0].ticks.min;
+		delete chart.options.scales.x.min;
 		min = null;
 	} else {
 		min = new Date();
 		min.setDate(min.getDate() - interval);
-		chart.options.scales.xAxes[0].ticks.min = min;
+		chart.options.scales.x.min = min;
 	}
 	chart.update();
 	updateBasicStats();
